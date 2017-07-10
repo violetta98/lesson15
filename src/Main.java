@@ -1,4 +1,7 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 class TestSerial implements Serializable {
     transient String name;
@@ -14,7 +17,7 @@ class TestSerial implements Serializable {
 }
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try(ObjectOutputStream oos = new ObjectOutputStream((new FileOutputStream("temp.out")))) {
             TestSerial ts = new TestSerial("lol", 100500);
             oos.writeObject(ts);
@@ -31,5 +34,7 @@ public class Main {
         } catch(IOException | ClassNotFoundException ex) {
             // error
         }
+        Path target = Paths.get("E:\\Study\\MyStuff.txt");
+        Path file = Files.createFile(target);
     }
 }
