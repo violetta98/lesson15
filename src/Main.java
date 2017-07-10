@@ -3,6 +3,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 class TestSerial implements Serializable {
     transient String name;
     transient int age;
@@ -34,7 +36,8 @@ public class Main {
         } catch(IOException | ClassNotFoundException ex) {
             // error
         }
-        Path target = Paths.get("E:\\Study\\MyStuff.txt");
-        Path file = Files.createFile(target);
+        Path source = Paths.get("E:\\Study\\MyStuff.txt");
+        Path target = Paths.get("E:\\Progs\\lol.txt");
+        Files.copy(source, target, REPLACE_EXISTING);
     }
 }
